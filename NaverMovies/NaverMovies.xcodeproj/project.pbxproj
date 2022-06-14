@@ -17,6 +17,8 @@
 		13B374B6285767F30046CD6F /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374B5285767F30046CD6F /* MovieInfoView.swift */; };
 		13B374B828576ECB0046CD6F /* MovieInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374B728576ECB0046CD6F /* MovieInfoTableViewCell.swift */; };
 		13B374BB2858A9F20046CD6F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 13B374BA2858A9F20046CD6F /* Alamofire */; };
+		13B374BD2858AB500046CD6F /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374BC2858AB500046CD6F /* APICaller.swift */; };
+		13B374BF2858AFAD0046CD6F /* MovieResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374BE2858AFAD0046CD6F /* MovieResultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		13B374AF285764890046CD6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B374B5285767F30046CD6F /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 		13B374B728576ECB0046CD6F /* MovieInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoTableViewCell.swift; sourceTree = "<group>"; };
+		13B374BC2858AB500046CD6F /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		13B374BE2858AFAD0046CD6F /* MovieResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				13B374A2285764880046CD6F /* ViewController.swift */,
 				13B374B728576ECB0046CD6F /* MovieInfoTableViewCell.swift */,
 				13B374B5285767F30046CD6F /* MovieInfoView.swift */,
+				13B374BC2858AB500046CD6F /* APICaller.swift */,
+				13B374BE2858AFAD0046CD6F /* MovieResultModel.swift */,
 				13B374A4285764880046CD6F /* Main.storyboard */,
 				13B374AA285764890046CD6F /* Assets.xcassets */,
 				13B374AC285764890046CD6F /* LaunchScreen.storyboard */,
@@ -156,8 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B374A3285764880046CD6F /* ViewController.swift in Sources */,
+				13B374BF2858AFAD0046CD6F /* MovieResultModel.swift in Sources */,
 				13B3749F285764880046CD6F /* AppDelegate.swift in Sources */,
 				13B374A1285764880046CD6F /* SceneDelegate.swift in Sources */,
+				13B374BD2858AB500046CD6F /* APICaller.swift in Sources */,
 				13B374A9285764880046CD6F /* NaverMovies.xcdatamodeld in Sources */,
 				13B374B828576ECB0046CD6F /* MovieInfoTableViewCell.swift in Sources */,
 				13B374B6285767F30046CD6F /* MovieInfoView.swift in Sources */,
