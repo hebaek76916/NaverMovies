@@ -21,6 +21,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         setUpLayout()
+        
+        APICaller.search(query: "마파도") { res in
+        }
     }
 
 
