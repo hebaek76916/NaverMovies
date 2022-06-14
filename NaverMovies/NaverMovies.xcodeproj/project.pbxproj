@@ -16,6 +16,7 @@
 		13B374AE285764890046CD6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B374AC285764890046CD6F /* LaunchScreen.storyboard */; };
 		13B374B6285767F30046CD6F /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374B5285767F30046CD6F /* MovieInfoView.swift */; };
 		13B374B828576ECB0046CD6F /* MovieInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374B728576ECB0046CD6F /* MovieInfoTableViewCell.swift */; };
+		13B374BB2858A9F20046CD6F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 13B374BA2858A9F20046CD6F /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B374BB2858A9F20046CD6F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,9 @@
 			dependencies = (
 			);
 			name = NaverMovies;
+			packageProductDependencies = (
+				13B374BA2858A9F20046CD6F /* Alamofire */,
+			);
 			productName = NaverMovies;
 			productReference = 13B3749B285764870046CD6F /* NaverMovies.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 13B37492285764870046CD6F;
+			packageReferences = (
+				13B374B92858A9F20046CD6F /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 13B3749C285764870046CD6F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -372,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13B374B92858A9F20046CD6F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13B374BA2858A9F20046CD6F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B374B92858A9F20046CD6F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		13B374A7285764880046CD6F /* NaverMovies.xcdatamodeld */ = {
