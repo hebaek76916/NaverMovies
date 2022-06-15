@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieInfoView: UIView {
 
     private let thumbnailView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .black
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -75,7 +76,8 @@ class MovieInfoView: UIView {
     }
     
     public func updateUI(model: MovieInfo) {
-        //thumbnail
+        thumbnailView.setImage(with: model.image)
+        
         titleLabel.text = String(format: "제목 : %@", model.title?.removeHTMLTag() ?? "")
         directorLabel.text = String(format: "감독 : %@", model.director ?? "")
         castLabel.text = String(format: "출연진 : %@", model.actor ?? "")
@@ -134,11 +136,26 @@ extension MovieInfoView {
 }
 
 extension String {
-
    func removeHTMLTag() -> String {
-
        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
-
     }
+}
 
+extension UIImageView {
+    func setImage(with source: String?) {
+        guard let source = source else { return }
+        guard let url = URL(string: source) else { return }
+        self.kf.setImage(with: url,
+                         placeholder: nil,
+                         options: [
+                             .loadDiskFileSynchronously,
+                             .cacheOriginalImage,
+                             .transition(.fade(0.25))
+                         ],
+                         completionHandler: { result in
+            
+            
+        })
+    
+    }
 }

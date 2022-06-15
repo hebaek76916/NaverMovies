@@ -29,6 +29,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setUpSearchController()
     }
 
@@ -54,10 +55,8 @@ extension ViewController: UISearchResultsUpdating {
                 guard let result = result else {
                     return
                 }
-                
-                //DispatchQueue.main.async {
+        
                 resultVC.update(with: result.items ?? [])
-                //}
             }
         })
     }
