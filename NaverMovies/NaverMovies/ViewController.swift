@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+
+    private var searchTimer: Timer?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -16,48 +18,65 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "영화이름"
+        return searchBar
+    }()
+    
+    private var result: [MovieInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTableView()
-        setUpLayout()
-        
-        APICaller.search(query: "마파도") { res in
-        }
+        setUpSearchController()
     }
-
 
 }
 
-extension ViewController: UITableViewDelegate,
-                          UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        return 10
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+     
+        guard let query = searchController.searchBar.text,
+              let resultVC = searchController.searchResultsController as? SearchResultController,
+              !(query.trimmingCharacters(in: .whitespaces).isEmpty) else {
+                  return
+              }
+        
+        searchTimer?.invalidate()
+        
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3,
+                                           repeats: false,
+                                           block: { _ in
+            
+            APICaller.search(query: query) { result in
+                
+                guard let result = result else {
+                    return
+                }
+                
+                //DispatchQueue.main.async {
+                resultVC.update(with: result.items ?? [])
+                //}
+            }
+        })
     }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieInfoTableViewCell.identifier,
-                                                       for: indexPath) as? MovieInfoTableViewCell else {
-            return UITableViewCell()
-        }
-        return cell
+}
+
+extension ViewController: SearchResultControllerDelegate {
+    func searchResultViewController(searchResult: MovieResult) {
+        
     }
-    
-    
 }
 
 extension ViewController {
-    private func setUpTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
+    
+    private func setUpSearchController() {
+        let resultVC = SearchResultController()
+        resultVC.delegate = self
+        let searchVC = UISearchController(searchResultsController: resultVC)
+        searchVC.searchResultsUpdater = self
+        navigationItem.searchController = searchVC
     }
     
-    private func setUpLayout() {
-        
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
-    }
 }
