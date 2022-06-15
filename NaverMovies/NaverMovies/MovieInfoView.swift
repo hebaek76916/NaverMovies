@@ -73,6 +73,14 @@ class MovieInfoView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    public func updateUI(model: MovieInfo) {
+        //thumbnail
+        titleLabel.text = String(format: "제목 : %@", model.title?.removeHTMLTag() ?? "")
+        directorLabel.text = String(format: "감독 : %@", model.director ?? "")
+        castLabel.text = String(format: "출연진 : %@", model.actor ?? "")
+        scoreLabel.text = String(format: "평점 : %@", model.userRating ?? "")
+    }
 }
 
 extension MovieInfoView {
@@ -82,7 +90,7 @@ extension MovieInfoView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 3
-        stackView.alignment = .center
+        stackView.alignment = .leading
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         [
@@ -123,4 +131,14 @@ extension MovieInfoView {
         
     }
     
+}
+
+extension String {
+
+   func removeHTMLTag() -> String {
+
+       return self.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+
+    }
+
 }
