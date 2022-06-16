@@ -22,7 +22,7 @@ class FavoritesViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.results = Favorites.shared.getFavoritesData()
+        self.results = FavoritesManager.shared.getFavoritesData()
     }
     
     required init?(coder: NSCoder) {
