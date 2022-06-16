@@ -55,8 +55,11 @@ extension ViewController: UISearchResultsUpdating {
                 guard let result = result else {
                     return
                 }
-        
-                resultVC.update(with: result.items ?? [])
+                
+                DispatchQueue.main.async {
+                    resultVC.update(with: result.items ?? [])
+                }
+
             }
         })
     }
