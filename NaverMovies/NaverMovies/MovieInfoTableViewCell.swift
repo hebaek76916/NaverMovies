@@ -11,18 +11,34 @@ class MovieInfoTableViewCell: UITableViewCell {
 
     static let identifier = "MovieInfoTableViewCell"
     
-    private let infoView: MovieInfoView = MovieInfoView()
+    private var infoView: MovieInfoView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        infoView = MovieInfoView()
+        setUpUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        infoView?.reuse()
+    }
+    
+    public func updateUI(model: MovieInfo) {
+        infoView?.updateUI(model: model)
+    }
+    
+}
+
+extension MovieInfoTableViewCell {
+    private func setUpUI() {
+        guard let infoView = self.infoView else {
+            return
+        }
         infoView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(infoView)
         [
@@ -36,9 +52,4 @@ class MovieInfoTableViewCell: UITableViewCell {
                                         constant: -4)
         ].forEach{ $0.isActive = true }
     }
-    
-    public func updateUI(model: MovieInfo) {
-        infoView.updateUI(model: model)
-    }
-    
 }
