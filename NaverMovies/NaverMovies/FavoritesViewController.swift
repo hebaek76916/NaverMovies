@@ -17,12 +17,11 @@ class FavoritesViewController: UIViewController {
         return tableView
     }()
     
-    private var results: [MovieInfo] = []
-
+    private let results: [MovieInfo]
     
     init() {
-        super.init(nibName: nil, bundle: nil)
         self.results = FavoritesManager.shared.getFavoritesData()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -31,19 +30,15 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpTable()
-        
     }
     
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
-
 }
 
 extension FavoritesViewController: UITableViewDelegate,
