@@ -18,17 +18,18 @@ extension UIImageView {
     func setImage(with source: String?) {
         guard let source = source else { return }
         guard let url = URL(string: source) else { return }
-        self.kf.setImage(with: url,
-                         placeholder: nil,
-                         options: [
-                             .loadDiskFileSynchronously,
-                             .cacheOriginalImage,
-                             .transition(.fade(0.25))
-                         ],
-                         completionHandler: { result in
-            
-            
-        })
-    
+        DispatchQueue.main.async {
+            self.kf.setImage(with: url,
+                             placeholder: nil,
+                             options: [
+                                 .loadDiskFileSynchronously,
+                                 .cacheOriginalImage,
+                                 .transition(.fade(0.25))
+                             ],
+                             completionHandler: { result in
+                
+                
+            })
+        }
     }
 }
