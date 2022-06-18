@@ -11,7 +11,6 @@ protocol SearchResultControllerDelegate: AnyObject {
     func searchResultViewController(searchResult: MovieResult)
 }
 
-
 class SearchResultController: UIViewController {
     
     weak var delegate: SearchResultControllerDelegate?
@@ -33,15 +32,22 @@ class SearchResultController: UIViewController {
     
     private func setUpTable() {
         view.addSubview(tableView)
-        tableView.frame = view.bounds
+        [
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ].forEach{ $0.isActive = true }
         
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.delegate = self
         tableView.dataSource = self
     }
 
     public func update(with results: [MovieInfo]) {
         self.results = results
-        tableView.isHidden = results.isEmpty
+        self.tableView.isHidden = results.isEmpty
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -61,7 +67,13 @@ extension SearchResultController: UITableViewDelegate,
             return UITableViewCell()
         }
         let model = results[indexPath.row]
+    
         cell.updateUI(model: model)
+    
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
