@@ -21,4 +21,10 @@ struct MovieInfo: Codable {
     let image: String?
     let subtitle, pubDate, director, actor: String?
     let userRating: String?
+    
+    static func == (lhs: MovieInfo, rhs: MovieInfo) -> Bool {
+        return lhs.title == rhs.title &&
+        lhs.link == rhs.link &&
+        lhs.image == rhs.image
+    }
 }
