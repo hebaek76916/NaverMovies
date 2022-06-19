@@ -24,6 +24,7 @@
 		13B374C6285A16C50046CD6F /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374C5285A16C50046CD6F /* FavoritesManager.swift */; };
 		13B374C8285A16D60046CD6F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374C7285A16D60046CD6F /* Extensions.swift */; };
 		13B374CA285B6FB80046CD6F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374C9285B6FB80046CD6F /* FavoritesViewController.swift */; };
+		13B374CC285DAB540046CD6F /* MovieWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B374CB285DAB540046CD6F /* MovieWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		13B374C5285A16C50046CD6F /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		13B374C7285A16D60046CD6F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		13B374C9285B6FB80046CD6F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		13B374CB285DAB540046CD6F /* MovieWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				13B374BE2858AFAD0046CD6F /* MovieResultModel.swift */,
 				13B374C5285A16C50046CD6F /* FavoritesManager.swift */,
 				13B374C9285B6FB80046CD6F /* FavoritesViewController.swift */,
+				13B374CB285DAB540046CD6F /* MovieWebViewController.swift */,
 				13B374A4285764880046CD6F /* Main.storyboard */,
 				13B374AA285764890046CD6F /* Assets.xcassets */,
 				13B374AC285764890046CD6F /* LaunchScreen.storyboard */,
@@ -181,6 +184,7 @@
 				13B374BF2858AFAD0046CD6F /* MovieResultModel.swift in Sources */,
 				13B3749F285764880046CD6F /* AppDelegate.swift in Sources */,
 				13B374C6285A16C50046CD6F /* FavoritesManager.swift in Sources */,
+				13B374CC285DAB540046CD6F /* MovieWebViewController.swift in Sources */,
 				13B374C12858CCA90046CD6F /* SearchResultController.swift in Sources */,
 				13B374A1285764880046CD6F /* SceneDelegate.swift in Sources */,
 				13B374BD2858AB500046CD6F /* APICaller.swift in Sources */,
