@@ -37,7 +37,6 @@ extension APICaller {
             .validate(statusCode: 200..<300)
             .responseDecodable(of: MovieResult.self) { result in
                 completion(result.value)
-                dump(result.value)
             }
     }
 }
