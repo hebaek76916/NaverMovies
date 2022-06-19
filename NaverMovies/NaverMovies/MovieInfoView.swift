@@ -14,7 +14,7 @@ class MovieInfoView: UIView {
     
     private let contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
