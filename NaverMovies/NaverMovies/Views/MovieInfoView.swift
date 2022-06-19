@@ -69,7 +69,7 @@ class MovieInfoView: UIView {
 
     private let starMark: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart.fill")
+        imageView.image = UIImage(systemName: "star.fill")
         imageView.isUserInteractionEnabled = true
         imageView.tintColor = .gray
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,7 +119,7 @@ extension MovieInfoView {
         let favorites = FavoritesManager.shared.getFavoritesData()
         
         if favorites.contains(where: { $0 == model }) {
-            starMark.tintColor = .yellow
+            starMark.tintColor = .blue
         } else {
             starMark.tintColor = .gray
         }
@@ -137,7 +137,7 @@ extension MovieInfoView {
         isStarSelected = !isStarSelected
         
         if isStarSelected {
-            starMark.tintColor = .yellow
+            starMark.tintColor = .blue
             FavoritesManager.shared.add(model: model)
             
         } else {
@@ -185,9 +185,10 @@ extension MovieInfoView {
                                                  multiplier: 1/1.4)
         ].forEach{ $0.isActive = true }
         
-        
+
         stackView.leadingAnchor.constraint(equalTo: thumbnailView.trailingAnchor,
                                            constant: 10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         // Star Mark Layout
         contentView.addSubview(starMark)
         [

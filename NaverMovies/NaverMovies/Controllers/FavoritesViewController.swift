@@ -17,7 +17,7 @@ class FavoritesViewController: UIViewController {
         return tableView
     }()
     
-    private let results: [MovieInfo]
+    private var results: [MovieInfo]
     
     init() {
         self.results = FavoritesManager.shared.getFavoritesData()
@@ -28,8 +28,17 @@ class FavoritesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.results = FavoritesManager.shared.getFavoritesData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "즐겨찾기 목록"
         setUpTable()
     }
     
@@ -56,5 +65,10 @@ extension FavoritesViewController: UITableViewDelegate,
         let model = results[indexPath.row]
         cell.updateUI(model: model)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieWebViewController(model: results[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

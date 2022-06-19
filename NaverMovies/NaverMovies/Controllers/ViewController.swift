@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     private var searchTimer: Timer?
     private var results: [MovieInfo] = []
-    
+        
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(MovieInfoTableViewCell.self,
@@ -23,10 +23,10 @@ class ViewController: UIViewController {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "영화이름"
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -34,8 +34,16 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        navigationItem.title = "네이버 영화 검색"
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     @objc func moveToFavorites() {
         let vc = FavoritesViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -48,6 +56,10 @@ extension ViewController: UISearchBarDelegate {
                    textDidChange searchText: String) {
         guard let query = searchBar.text,
               !(query.trimmingCharacters(in: .whitespaces).isEmpty) else {
+                  results = []
+                  DispatchQueue.main.async {
+                      self.tableView.reloadData()
+                  }
                   return
               }
         
@@ -87,12 +99,16 @@ extension ViewController: UITableViewDelegate,
         cell.updateUI(model: model)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieWebViewController(model: results[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 extension ViewController {
     func setUpUI() {
         view.backgroundColor = .systemBackground
         
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(searchBar)
         [
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -114,11 +130,5 @@ extension ViewController {
                                                  target: self,
                                                  action: #selector(moveToFavorites))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-    }
-}
-
-extension ViewController: SearchResultControllerDelegate {
-    func searchResultViewController(searchResult: MovieResult) {
-        
     }
 }
