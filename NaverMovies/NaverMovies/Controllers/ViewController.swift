@@ -69,7 +69,7 @@ extension ViewController: UISearchBarDelegate {
                                            repeats: false,
                                            block: { _ in
             
-            APICaller.search(query: query) { result in
+            APICaller.shared.search(query: query) { result in	
                 guard let result = result else {
                     return
                 }
@@ -85,10 +85,12 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: UITableViewDelegate,
                           UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
+    
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieInfoTableViewCell.identifier,
@@ -103,6 +105,24 @@ extension ViewController: UITableViewDelegate,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieWebViewController(model: results[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let position = scrollView.contentOffset.y
+        
+        if position > tableView.contentSize.height - scrollView.frame.size.height - 100 {
+            
+            guard !APICaller.shared.isPaginating else { return }
+            
+            APICaller.shared.fetchData(pagination: true) { [weak self] res in
+                self?.results.append(contentsOf: res)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+        
     }
 }
 extension ViewController {
