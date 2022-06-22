@@ -45,7 +45,7 @@ extension APICaller {
     }
     
     
-    func search(
+    public func search(
         query: String,
         completion: @escaping (MovieResult?) -> Void
     ) {
@@ -64,7 +64,7 @@ extension APICaller {
         }
     }
     
-    func fetchData(
+    public func fetchData(
         pagination: Bool = false,
         completion: @escaping ([MovieInfo]) -> Void
     ) {

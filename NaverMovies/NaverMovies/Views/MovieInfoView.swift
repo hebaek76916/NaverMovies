@@ -125,7 +125,7 @@ extension MovieInfoView {
         }
     }
     
-    @objc func tabStar(_ sender: UITapGestureRecognizer) {
+    @objc private func tabStar(_ sender: UITapGestureRecognizer) {
         
         guard let model = self.model else { return }
         

@@ -10,10 +10,10 @@ import WebKit
 
 class MovieWebViewController: UIViewController {
     
-    let model: MovieInfo
-    let webView = WKWebView()
+    private let model: MovieInfo
+    private let webView = WKWebView()
 
-    let infoView: MovieInfoView = {
+    private let infoView: MovieInfoView = {
         let view = MovieInfoView()
         view.backgroundColor = .white
         view.layer.borderWidth = 1

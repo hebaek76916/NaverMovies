@@ -126,7 +126,7 @@ extension ViewController: UITableViewDelegate,
     }
 }
 extension ViewController {
-    func setUpUI() {
+    private func setUpUI() {
         view.backgroundColor = .systemBackground
         
         view.addSubview(searchBar)
