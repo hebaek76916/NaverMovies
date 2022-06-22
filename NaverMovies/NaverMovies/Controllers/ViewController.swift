@@ -51,9 +51,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UISearchBarDelegate {
-
+    
     func searchBar(_ searchBar: UISearchBar,
-                   textDidChange searchText: String) {
+                           textDidChange searchText: String) {
         guard let query = searchBar.text,
               !(query.trimmingCharacters(in: .whitespaces).isEmpty) else {
                   results = []
@@ -69,11 +69,10 @@ extension ViewController: UISearchBarDelegate {
                                            repeats: false,
                                            block: { _ in
             
-            APICaller.shared.search(query: query) { result in	
+            APICaller.shared.search(query: query) { result in
                 guard let result = result else {
                     return
                 }
-                print(result)
                 DispatchQueue.main.async {
                     self.results = result.items ?? []
                     self.tableView.reloadData()
@@ -126,7 +125,7 @@ extension ViewController: UITableViewDelegate,
     }
 }
 extension ViewController {
-    func setUpUI() {
+    private func setUpUI() {
         view.backgroundColor = .systemBackground
         
         view.addSubview(searchBar)

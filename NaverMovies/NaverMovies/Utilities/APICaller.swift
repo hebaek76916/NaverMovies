@@ -91,6 +91,5 @@ extension APICaller {
                 }
             }
         }
-        
     }
 }
