@@ -20,6 +20,7 @@ class APICaller {
     
     private static var params: Parameters = [:]
     
+    private let fetchedDataEachCallNum: Int = 20
 }
 
 extension APICaller {
@@ -50,9 +51,9 @@ extension APICaller {
         completion: @escaping (MovieResult?) -> Void
     ) {
         APICaller.params = ["query": query,
-                            "display": 100,
+                            "display": fetchedDataEachCallNum,
                             "start": 1]
-        
+        self.isPaginating = false
         request(query: APICaller.params,
                 expecting: MovieResult.self) { res in
             switch res {
@@ -68,22 +69,25 @@ extension APICaller {
         pagination: Bool = false,
         completion: @escaping ([MovieInfo]) -> Void
     ) {
-        if pagination {
-            isPaginating = true
-        }
+        guard pagination else { return }
+        isPaginating = true
         
         DispatchQueue.global().async {
             guard let temp = APICaller.params["start"] as? Int else { return }
-            let start = temp + 100
+            let start = temp + self.fetchedDataEachCallNum
             APICaller.params["start"] = start
             
             self.request(query: APICaller.params,
                     expecting: MovieResult.self) { res in
                 switch res {
                 case .success(let res):
-                    completion(res.items ?? [])
+                    if res.start != start {
+                        return
+                    } else {
+                        completion(res.items ?? [])
+                    }
                 case .failure:
-                    completion([])
+                    return //MARK: Throw Error 처리해야하나?..
                 }
                 
                 if self.isPaginating {
@@ -91,6 +95,6 @@ extension APICaller {
                 }
             }
         }
-        
     }
+    
 }
