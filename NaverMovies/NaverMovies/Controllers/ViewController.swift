@@ -81,6 +81,13 @@ extension ViewController: UISearchBarDelegate {
             }
         })
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        results = []
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension ViewController: UITableViewDelegate,
